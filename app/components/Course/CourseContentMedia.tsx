@@ -202,23 +202,24 @@ const CourseContentMedia = ({
   return (
     <div className="w-[95%] 800px:w-[86%] py-4 m-auto">
       <CoursePlayer
-        title={data[activeVideo]?.title}
-        videoUrl={data[activeVideo]?.videoUrl}
-      />
-      <div className="w-full flex items-center justify-between my-3">
+        key={data?.[activeVideo]?._id || activeVideo}
+         title={data?.[activeVideo]?.title}
+         videoUrl={data?.[activeVideo]?.videoUrl}
+       />
+
+       <div className="w-full flex items-center justify-between my-3">
         <div
-          className={`${
-            styles.button
-          } text-white  !w-[unset] !min-h-[40px] !py-[unset] ${
-            activeVideo === 0 && "!cursor-no-drop opacity-[.8]"
-          }`}
-          onClick={() =>
-            setActiveVideo(activeVideo === 0 ? 0 : activeVideo - 1)
-          }
-        >
+         className={`${styles.button} text-white !w-[unset] !min-h-[40px] !py-[unset] ${
+           activeVideo === 0 && "!cursor-no-drop opacity-[.8]"
+           }`}
+           onClick={() =>
+             setActiveVideo(activeVideo === 0 ? 0 : activeVideo - 1)
+           }
+         >
           <AiOutlineArrowLeft className="mr-2" />
-          Prev Lesson
-        </div>
+           Prev Lesson
+         </div>
+
         <div
           className={`${
             styles.button
@@ -237,29 +238,33 @@ const CourseContentMedia = ({
           <AiOutlineArrowRight className="ml-2" />
         </div>
       </div>
-      <h1 className="pt-2 text-[25px] font-[600] dark:text-white text-black ">
-        {data[activeVideo].title}
-      </h1>
-      <br />
-      <div className="w-full p-4 flex items-center justify-between bg-slate-500 bg-opacity-20 backdrop-blur shadow-[bg-slate-700] rounded shadow-inner">
-        {["Overview", "Resources", "Q&A", "Reviews"].map((text, index) => (
-          <h5
-            key={index}
-            className={`800px:text-[20px] cursor-pointer ${
-              activeBar === index
-                ? "text-red-500"
-                : "dark:text-white text-black"
+           <h1 className="pt-2 text-[25px] font-[600] dark:text-white text-black ">
+       {data?.[activeVideo]?.title || "Loading..."}
+     </h1>
+
+       <br />
+
+       {/* 🔻 REST CODE SAME (UNCHANGED) */}       <div className="w-full p-4 flex items-center justify-between bg-slate-500 bg-opacity-20 backdrop-blur shadow-[bg-slate-700] rounded shadow-inner">
+         {["Overview", "Resources", "Q&A", "Reviews"].map((text, index) => (
+           <h5
+             key={index}
+             className={`800px:text-[20px] cursor-pointer ${
+               activeBar === index
+               ? "text-red-500"
+              : "dark:text-white text-black"
             }`}
-            onClick={() => setactiveBar(index)}
-          >
+             onClick={() => setactiveBar(index)}
+           >
             {text}
-          </h5>
-        ))}
+           </h5>
+         ))}
       </div>
+
       <br />
+
       {activeBar === 0 && (
         <p className="text-[18px] whitespace-pre-line mb-3 dark:text-white text-black">
-          {data[activeVideo]?.description}
+          {data?.[activeVideo]?.description}
         </p>
       )}
 
@@ -661,3 +666,4 @@ const CommentItem = ({
 };
 
 export default CourseContentMedia;
+

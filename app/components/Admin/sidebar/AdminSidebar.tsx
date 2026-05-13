@@ -26,6 +26,12 @@ import { useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+//note import section
+import NoteAddIcon from "@mui/icons-material/NoteAdd";
+import StickyNote2Icon from "@mui/icons-material/StickyNote2";
+//quiz import section
+import AddTaskIcon from "@mui/icons-material/AddTask";
+import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 
 interface itemProps {
   title: string;
@@ -100,7 +106,7 @@ const Sidebar = () => {
           top: 0,
           left: 0,
           height: "100vh",
-          zIndex:99999999999999,
+          zIndex: 99999999999999,
           width: isCollapsed ? "0%" : "16%",
         }}
       >
@@ -120,12 +126,15 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-               <Link href="/" className="block">
-               <h3 className="text-[25px] font-Poppins uppercase dark:text-white text-black">
-                  ELearning
-                </h3>
-               </Link>
-                <IconButton onClick={() => setIsCollapsed(!isCollapsed)} className="inline-block">
+                <Link href="/" className="block">
+                  <h3 className="text-[25px] font-Poppins uppercase dark:text-white text-black">
+                    ELearning
+                  </h3>
+                </Link>
+                <IconButton
+                  onClick={() => setIsCollapsed(!isCollapsed)}
+                  className="inline-block"
+                >
                   <ArrowBackIosIcon className="text-black dark:text-[#ffffffc1]" />
                 </IconButton>
               </Box>
@@ -174,7 +183,6 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-
             <Typography
               variant="h5"
               sx={{ m: "15px 0 5px 25px" }}
@@ -189,7 +197,6 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-
             <Item
               title="Invoices"
               to="/admin/invoices"
@@ -197,7 +204,6 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-
             <Typography
               variant="h5"
               className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]"
@@ -219,7 +225,37 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+            {/* note section */}
+            <Item
+              title="Create Note"
+              to="/admin/create-note"
+              icon={<NoteAddIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Live Notes"
+              to="/admin/notes"
+              icon={<StickyNote2Icon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            {/*Quiz Icon  */}
+            <Item
+              title="Create Quiz"
+              to="/admin/create-quiz"
+              icon={<AddTaskIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
 
+            <Item
+              title="Live Quizzes"
+              to="/admin/quizzes"
+              icon={<AssignmentTurnedInIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
             <Typography
               variant="h5"
               className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]"
@@ -248,7 +284,6 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-
             <Typography
               variant="h5"
               className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]"
@@ -263,7 +298,6 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-
             <Typography
               variant="h6"
               className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]"
@@ -285,7 +319,6 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-
             <Item
               title="Users Analytics"
               to="/admin/users-analytics"
@@ -293,7 +326,6 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-
             <Typography
               variant="h6"
               className="!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]"

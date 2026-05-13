@@ -19,28 +19,38 @@ type Props = {
 const CourseDetailsPage = ({ id }: Props) => {
   const [route, setRoute] = useState("Login");
   const [open, setOpen] = useState(false);
+
   const { data, isLoading } = useGetCourseDetailsQuery(id);
   const { data: config } = useGetStripePublishablekeyQuery({});
+  const { data: userData } = useLoadUserQuery(undefined, {});
+
   const [createPaymentIntent, { data: paymentIntentData }] =
     useCreatePaymentIntentMutation();
-  const { data: userData } = useLoadUserQuery(undefined, {});
+
   const [stripePromise, setStripePromise] = useState<any>(null);
   const [clientSecret, setClientSecret] = useState("");
 
+  // ✅ FIXED useEffect
   useEffect(() => {
-    if (config) {
-      const publishablekey = config?.publishablekey;
-      setStripePromise(loadStripe(publishablekey));
+    // Load Stripe
+    if (config?.publishablekey) {
+      setStripePromise(loadStripe(config.publishablekey));
     }
-    if (data && userData?.user) {
+
+    // ✅ ONLY for PAID course
+    if (
+      data?.course?.price > 0 &&
+      userData?.user
+    ) {
       const amount = Math.round(data.course.price * 100);
       createPaymentIntent(amount);
     }
-  }, [config, data, userData]);
+  }, [config, data, userData, createPaymentIntent]);
 
+  // ✅ Client Secret
   useEffect(() => {
-    if (paymentIntentData) {
-      setClientSecret(paymentIntentData?.client_secret);
+    if (paymentIntentData?.client_secret) {
+      setClientSecret(paymentIntentData.client_secret);
     }
   }, [paymentIntentData]);
 
@@ -51,12 +61,11 @@ const CourseDetailsPage = ({ id }: Props) => {
       ) : (
         <div>
           <Heading
-            title={data?.course?.name + " - ELearning"}
-            description={
-              "ELearning is a programming community which is developed by shahriar sajeeb for helping programmers"
-            }
+            title={`${data?.course?.name} - ELearning`}
+            description="ELearning is a programming community for developers"
             keywords={data?.course?.tags}
           />
+
           <Header
             route={route}
             setRoute={setRoute}
@@ -64,15 +73,16 @@ const CourseDetailsPage = ({ id }: Props) => {
             setOpen={setOpen}
             activeItem={1}
           />
-          {stripePromise && (
-            <CourseDetails
-              data={data.course}
-              stripePromise={stripePromise}
-              clientSecret={clientSecret}
-              setRoute={setRoute}
-              setOpen={setOpen}
-            />
-          )}
+
+          {/* ✅ Always render CourseDetails */}
+          <CourseDetails
+            data={data?.course}
+            stripePromise={stripePromise}
+            clientSecret={clientSecret}
+            setRoute={setRoute}
+            setOpen={setOpen}
+          />
+
           <Footer />
         </div>
       )}
@@ -81,3 +91,5 @@ const CourseDetailsPage = ({ id }: Props) => {
 };
 
 export default CourseDetailsPage;
+
+

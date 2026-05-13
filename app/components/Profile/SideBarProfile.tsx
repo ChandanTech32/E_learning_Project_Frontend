@@ -6,6 +6,10 @@ import { SiCoursera } from "react-icons/si";
 import { AiOutlineLogout } from "react-icons/ai";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import Link from "next/link";
+// Note Icon
+import { StickyNote2 } from "@mui/icons-material";
+// Fact Check Icon
+import FactCheck from "@mui/icons-material/FactCheck";
 
 type Props = {
   user: any;
@@ -49,7 +53,7 @@ const SideBarProfile: FC<Props> = ({
         }`}
         onClick={() => setActive(2)}
       >
-        <RiLockPasswordLine size={20} className="dark:text-white text-black"  />
+        <RiLockPasswordLine size={20} className="dark:text-white text-black" />
         <h5 className="pl-2 800px:block hidden font-Poppins dark:text-white text-black">
           Change Password
         </h5>
@@ -60,11 +64,43 @@ const SideBarProfile: FC<Props> = ({
         }`}
         onClick={() => setActive(3)}
       >
-        <SiCoursera size={20} className="dark:text-white text-black"  />
+        <SiCoursera size={20} className="dark:text-white text-black" />
         <h5 className="pl-2 800px:block hidden font-Poppins dark:text-white text-black">
           Enrolled Courses
         </h5>
       </div>
+      {/* Note Section  */}
+      <Link
+        href={"/notes"}
+        className={`w-full flex items-center px-3 py-4 cursor-pointer ${
+          active === 5 ? "dark:bg-slate-800 bg-white" : "bg-transparent"
+        }`}
+      >
+        <StickyNote2
+          sx={{ fontSize: "20px" }}
+          className="dark:text-white text-black"
+        />
+
+        <h5 className="pl-2 800px:block hidden font-Poppins dark:text-white text-black">
+          Notes
+        </h5>
+      </Link>
+
+      <Link
+        href={"/quizzes"}
+        className={`w-full flex items-center px-3 py-4 cursor-pointer ${
+          active === 6 ? "dark:bg-slate-800 bg-white" : "bg-transparent"
+        }`}
+      >
+        <FactCheck
+          sx={{ fontSize: "20px" }}
+          className="dark:text-white text-black"
+        />
+
+        <h5 className="pl-2 800px:block hidden font-Poppins dark:text-white text-black">
+          Quizzes
+        </h5>
+      </Link>
       {user.role === "admin" && (
         <Link
           className={`w-full flex items-center px-3 py-4 cursor-pointer ${
@@ -72,12 +108,16 @@ const SideBarProfile: FC<Props> = ({
           }`}
           href={"/admin"}
         >
-          <MdOutlineAdminPanelSettings size={20} className="dark:text-white text-black"  />
+          <MdOutlineAdminPanelSettings
+            size={20}
+            className="dark:text-white text-black"
+          />
           <h5 className="pl-2 800px:block hidden font-Poppins dark:text-white text-black">
             Admin Dashboard
           </h5>
         </Link>
       )}
+
       <div
         className={`w-full flex items-center px-3 py-4 cursor-pointer ${
           active === 4 ? "dark:bg-slate-800 bg-white" : "bg-transparent"
