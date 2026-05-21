@@ -10,7 +10,6 @@ import Link from "next/link";
 import { StickyNote2 } from "@mui/icons-material";
 // Fact Check Icon
 import FactCheck from "@mui/icons-material/FactCheck";
-
 type Props = {
   user: any;
   active: number;
@@ -58,6 +57,7 @@ const SideBarProfile: FC<Props> = ({
           Change Password
         </h5>
       </div>
+
       <div
         className={`w-full flex items-center px-3 py-4 cursor-pointer ${
           active === 3 ? "dark:bg-slate-800 bg-white" : "bg-transparent"
@@ -101,6 +101,7 @@ const SideBarProfile: FC<Props> = ({
           Quizzes
         </h5>
       </Link>
+
       {user.role === "admin" && (
         <Link
           className={`w-full flex items-center px-3 py-4 cursor-pointer ${

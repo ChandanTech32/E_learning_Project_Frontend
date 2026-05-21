@@ -244,7 +244,8 @@ const CourseContentMedia = ({
 
        <br />
 
-       {/* 🔻 REST CODE SAME (UNCHANGED) */}       <div className="w-full p-4 flex items-center justify-between bg-slate-500 bg-opacity-20 backdrop-blur shadow-[bg-slate-700] rounded shadow-inner">
+       {/* 🔻 REST CODE SAME (UNCHANGED) */}     
+         <div className="w-full p-4 flex items-center justify-between bg-slate-500 bg-opacity-20 backdrop-blur shadow-[bg-slate-700] rounded shadow-inner">
          {["Overview", "Resources", "Q&A", "Reviews"].map((text, index) => (
            <h5
              key={index}

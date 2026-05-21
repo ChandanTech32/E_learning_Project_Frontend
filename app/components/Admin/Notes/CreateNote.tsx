@@ -130,7 +130,7 @@ const CreateNote = () => {
         <input
           type="submit"
           value="Create Note"
-          className="w-full 800px:w-[180px] h-[40px] bg-[#37a39a] text-white rounded cursor-pointer"
+          className="w-full 800px:w-[180px] h-[40px] bg-[#37a39a] text-white rounded cursor-pointer "
         />
       </form>
     </div>

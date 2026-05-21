@@ -161,7 +161,7 @@ const CourseInformation: FC<Props> = ({
             ${styles.input}`}
             />
           </div>
-          <div className="w-[50%]">
+          <div className="w-[50%] ">
             <label className={`${styles.label} w-[50%]`}>
               Course Categories
             </label>
@@ -180,7 +180,7 @@ const CourseInformation: FC<Props> = ({
               {categories &&
                 categories.map((item: any) => (
                   <option
-                    className="dark:bg-[#000] text-[#fff]"
+                    className="dark:bg-[#000]text-black dark:text-white"
                     value={item.title}
                     key={item._id}
                   >

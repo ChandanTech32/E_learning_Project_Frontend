@@ -43,11 +43,11 @@ const CoursePreview: FC<Props> = ({
             title={courseData?.title}
           />
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center dark:text-white text-black ">
           <h1 className="pt-5 text-[25px]">
             {courseData?.price === 0 ? "Free" : courseData?.price + "$"}
           </h1>
-          <h5 className="pl-3 text-[20px] mt-2 line-through opacity-80">
+          <h5 className="pl-3 text-[20px] mt-2 line-through opacity-80 ">
             {courseData?.estimatedPrice}$
           </h5>
 
@@ -78,12 +78,12 @@ const CoursePreview: FC<Props> = ({
             Apply
           </div>
         </div>
-        <p className="pb-1">• Source code included</p>
-        <p className="pb-1">• Full lifetime access</p>
-        <p className="pb-1">• Certificate of completion</p>
-        <p className="pb-3 800px:pb-1">• Premium Support</p>
+        <p className="pb-1 dark:text-white text-black ">• Source code included</p>
+        <p className="pb-1 dark:text-white text-black ">• Full lifetime access</p>
+        <p className="pb-1 dark:text-white text-black ">• Certificate of completion</p>
+        <p className="pb-3 800px:pb-1 dark:text-white text-black ">• Premium Support</p>
       </div>
-      <div className="w-full">
+      <div className="w-full dark:text-white text-black ">
         <div className="w-full 800px:pr-5">
           <h1 className="text-[25px] font-Poppins font-[600]">
             {courseData?.name}
